@@ -29,4 +29,8 @@ public class University {
     public List<Student> getStudentsList() {
         return studentsList;
     }
+
+    public void setStudents(List<Student> studentsList) {
+        this.studentsList = studentsList;
+    }
 }

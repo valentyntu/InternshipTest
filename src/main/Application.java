@@ -2,18 +2,20 @@ package main;
 
 import institution.University;
 import institution.interlink.Internship;
-import person.Student;
-import person.consciousness.KnowledgeLevel;
+import person.HardcodedStudentRepository;
+import person.StudentRepository;
 
 public class Application {
+
+    private static StudentRepository studentRepository;
+
     public static void main(String[] args) {
+        studentRepository = new HardcodedStudentRepository();
+
         University university = new University("CH.U.I.");
-        university.addStudent(new Student("Andrew Kostenko", KnowledgeLevel.INTERMEDIATE));
-        university.addStudent(new Student("Julia Veselkina", KnowledgeLevel.UPPER_INTERMEDIATE));
-        university.addStudent(new Student("Maria Perechrest", KnowledgeLevel.ADVANCED));
+        university.setStudents(studentRepository.getStudents());
 
         Internship internship = new Internship("Interlink", university.getStudentsList());
-        System.out.println("List of internship's students:");
-        System.out.print(internship.getStudents());
+        internship.printStudents();
     }
 }

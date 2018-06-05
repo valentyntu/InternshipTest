@@ -33,6 +33,11 @@ public class Internship {
         return result.toString();
     }
 
+    public void printStudents() {
+        System.out.println("List of internship's students:");
+        System.out.print(getStudents());
+    }
+
     public String getName() {
         return name;
     }
