@@ -12,8 +12,8 @@ public class Application {
         university.addStudent(new Student("Julia Veselkina", KnowledgeLevel.UPPER_INTERMEDIATE));
         university.addStudent(new Student("Maria Perechrest", KnowledgeLevel.ADVANCED));
 
-        Internship internship = new Internship("Interlink");
+        Internship internship = new Internship("Interlink", university.getStudentsList());
         System.out.println("List of internship's students:");
-        System.out.println(internship.getStudents());
+        System.out.print(internship.getStudents());
     }
 }

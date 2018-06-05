@@ -2,16 +2,31 @@ package institution;
 
 import person.Student;
 
-public class University {
-    public University(String name) {
-        //TODO: Implementation is needed
-    }
+import java.util.ArrayList;
+import java.util.List;
 
-    public void setStudent(Student student) {
-        //TODO: Implementation is needed
+public class University {
+    private String name;
+    private List<Student> studentsList;
+
+    public University(String name) {
+        this.name = name;
+        studentsList = new ArrayList<>();
     }
 
     public void addStudent(Student student) {
-        //TODO: Implementation is needed
+        studentsList.add(student);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Student> getStudentsList() {
+        return studentsList;
     }
 }
