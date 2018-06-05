@@ -1,13 +1,30 @@
 package person;
 
-import person.consciousness.Knowledge;
+import person.consciousness.KnowledgeLevel;
 
 public class Student {
-    public Student(String name) {
-        //TODO: Implementation is needed
+
+    private String fullName;
+    private KnowledgeLevel knowledgeLevel;
+
+    public Student(String fullName, KnowledgeLevel knowledgeLevel) {
+        this.fullName = fullName;
+        this.knowledgeLevel = knowledgeLevel;
     }
 
-    public void setKnowledge(Knowledge knowledge) {
-        //TODO: Implementation is needed
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public KnowledgeLevel getKnowledgeLevel() {
+        return knowledgeLevel;
+    }
+
+    public void setKnowledgeLevel(KnowledgeLevel knowledgeLevel) {
+        this.knowledgeLevel = knowledgeLevel;
     }
 }
