@@ -1,7 +1,7 @@
 package institution.interlink;
 
+import institution.University;
 import person.Student;
-import person.consciousness.KnowledgeLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +10,21 @@ public class Internship {
 
     private String name;
     private List<Student> studentsList;
+    private University studentsOrigin;
 
     public Internship(String name) {
         this.name = name;
         studentsList = new ArrayList<>();
     }
 
-    public Internship(String name, List<Student> students) {
+    public Internship(String name, University university) {
         this(name);
-        students.forEach(this::addStudent);
+        this.studentsOrigin = university;
+        university.getStudentsList().forEach(this::addStudent);
     }
 
     public void addStudent(Student student) {
-        if (student.getKnowledgeLevel().ordinal() >= KnowledgeLevel.UPPER_INTERMEDIATE.ordinal()) {
+        if (student.getKnowledgeLevel().ordinal() > studentsOrigin.getAverageLevel().ordinal()) {
             studentsList.add(student);
         }
     }

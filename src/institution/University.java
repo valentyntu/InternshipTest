@@ -1,6 +1,7 @@
 package institution;
 
 import person.Student;
+import person.consciousness.KnowledgeLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,17 @@ public class University {
 
     public List<Student> getStudentsList() {
         return studentsList;
+    }
+
+    public KnowledgeLevel getAverageLevel() {
+        KnowledgeLevel averageLevel;
+        if (!studentsList.isEmpty()) {
+            int levelsSum = studentsList.stream().mapToInt(student -> student.getKnowledgeLevel().ordinal()).sum();
+            averageLevel = KnowledgeLevel.values()[Math.round((float) levelsSum / (float) studentsList.size())];
+        } else {
+            averageLevel = null;
+        }
+        return averageLevel;
     }
 
     public void setStudents(List<Student> studentsList) {

@@ -15,7 +15,7 @@ public class Application {
         University university = new University("CH.U.I.");
         university.setStudents(studentRepository.getStudents());
 
-        Internship internship = new Internship("Interlink", university.getStudentsList());
+        Internship internship = new Internship("Interlink", university);
         internship.printStudents();
     }
 }
