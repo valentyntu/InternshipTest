@@ -1,24 +1,20 @@
 package person;
 
+import institution.KnowledgeSource;
 import person.consciousness.KnowledgeLevel;
 
-import java.util.Random;
-
-public class Student {
+public class Student implements KnowledgeSource {
 
     private String fullName;
-    private KnowledgeLevel knowledgeLevel;
+    private Double theoreticalKnowledge;
+    private Double practicalKnowledge;
+    private Double learningEfficiency;
 
-    public Student(String fullName) {
+    public Student(String fullName, Double theoreticalKnowledge, Double practicalKnowledge, Double learningEfficiency) {
         this.fullName = fullName;
-        this.knowledgeLevel = KnowledgeLevel.values()[
-                new Random().nextInt(KnowledgeLevel.values().length - 1)
-                ];
-    }
-
-    public Student(String fullName, KnowledgeLevel knowledgeLevel) {
-        this.fullName = fullName;
-        this.knowledgeLevel = knowledgeLevel;
+        this.theoreticalKnowledge = theoreticalKnowledge;
+        this.practicalKnowledge = practicalKnowledge;
+        this.learningEfficiency = learningEfficiency;
     }
 
     public String getFullName() {
@@ -30,15 +26,41 @@ public class Student {
     }
 
     public KnowledgeLevel getKnowledgeLevel() {
-        return knowledgeLevel;
+        Double minKnowledgeValue = (theoreticalKnowledge >= practicalKnowledge ? practicalKnowledge : theoreticalKnowledge);
+        return KnowledgeLevel.getKnowledgeLevel(minKnowledgeValue);
     }
 
-    public void setKnowledgeLevel(KnowledgeLevel knowledgeLevel) {
-        this.knowledgeLevel = knowledgeLevel;
+    public void practice(Double taskComplexity) {
+        addPracticalKnowledge(taskComplexity);
+    }
+
+    public void addPracticalKnowledge(Double amount) {
+        this.practicalKnowledge += amount * learningEfficiency;
+    }
+
+    public void addTheoreticalKnowledge(Double amount) {
+        this.theoreticalKnowledge += amount * learningEfficiency;
+    }
+
+    public Double getTheoreticalKnowledge() {
+        return theoreticalKnowledge;
+    }
+
+    public Double getPracticalKnowledge() {
+        return practicalKnowledge;
+    }
+
+    public Double getLearningEfficiency() {
+        return learningEfficiency;
     }
 
     @Override
     public String toString() {
         return getFullName();
+    }
+
+    @Override
+    public void grantKnowledge(Student student) {
+        student.addTheoreticalKnowledge(this.getTheoreticalKnowledge() * 0.01);
     }
 }
