@@ -10,11 +10,14 @@ public class Student implements KnowledgeSource {
     private Double practicalKnowledge;
     private Double learningEfficiency;
 
+    private boolean hasLaptop;
+
     public Student(String fullName, Double theoreticalKnowledge, Double practicalKnowledge, Double learningEfficiency) {
         this.fullName = fullName;
         this.theoreticalKnowledge = theoreticalKnowledge;
         this.practicalKnowledge = practicalKnowledge;
         this.learningEfficiency = learningEfficiency;
+        hasLaptop = true;
     }
 
     public String getFullName() {
@@ -52,6 +55,14 @@ public class Student implements KnowledgeSource {
 
     public Double getLearningEfficiency() {
         return learningEfficiency;
+    }
+
+    public boolean hasLaptop() {
+        return hasLaptop;
+    }
+
+    public void setHasLaptop(boolean hasLaptop) {
+        this.hasLaptop = hasLaptop;
     }
 
     @Override

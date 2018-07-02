@@ -1,12 +1,13 @@
 package institution.interlink;
 
+import institution.KnowledgeSource;
 import institution.University;
 import person.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Internship {
+public class Internship implements KnowledgeSource {
 
     private String name;
     private List<Student> studentsList;
@@ -46,5 +47,13 @@ public class Internship {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void grantKnowledge(Student student) {
+        if (studentsList.contains(student)) {
+            student.addTheoreticalKnowledge(20.0);
+            student.addPracticalKnowledge(30.0);
+        }
     }
 }
