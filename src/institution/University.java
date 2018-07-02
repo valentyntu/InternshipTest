@@ -6,7 +6,7 @@ import person.consciousness.KnowledgeLevel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class University {
+public class University implements KnowledgeSource {
     private String name;
     private List<Student> studentsList;
 
@@ -44,5 +44,13 @@ public class University {
 
     public void setStudents(List<Student> studentsList) {
         this.studentsList = studentsList;
+    }
+
+    @Override
+    public void grantKnowledge(Student student) {
+        if (studentsList.contains(student)) {
+            student.addTheoreticalKnowledge(10.0);
+            student.addPracticalKnowledge(2.5);
+        }
     }
 }
