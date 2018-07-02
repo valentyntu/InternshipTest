@@ -2,7 +2,7 @@ package person;
 
 import institution.KnowledgeSource;
 
-public class SelfStudy implements KnowledgeSource {
+public class SelfDevelopment implements KnowledgeSource {
 
     @Override
     public void grantKnowledge(Student student) {

@@ -2,6 +2,7 @@ package institution;
 
 import person.Student;
 import person.consciousness.KnowledgeLevel;
+import person.development.DevelopmentPlan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class University implements KnowledgeSource {
     private String name;
     private List<Student> studentsList;
+    private DevelopmentPlan developmentPlan;
 
     public University(String name) {
         this.name = name;
@@ -52,5 +54,14 @@ public class University implements KnowledgeSource {
             student.addTheoreticalKnowledge(10.0);
             student.addPracticalKnowledge(2.5);
         }
+    }
+
+    public DevelopmentPlan getDevelopmentPlan() {
+        return developmentPlan;
+    }
+
+    public void setDevelopmentPlan(DevelopmentPlan developmentPlan) {
+        this.developmentPlan = developmentPlan;
+        studentsList.forEach(student -> student.mergeDevelopmentPlans(developmentPlan));
     }
 }

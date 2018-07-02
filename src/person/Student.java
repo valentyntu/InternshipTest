@@ -2,6 +2,8 @@ package person;
 
 import institution.KnowledgeSource;
 import person.consciousness.KnowledgeLevel;
+import person.development.DevelopmentMeasure;
+import person.development.DevelopmentPlan;
 
 public class Student implements KnowledgeSource {
 
@@ -9,6 +11,7 @@ public class Student implements KnowledgeSource {
     private Double theoreticalKnowledge;
     private Double practicalKnowledge;
     private Double learningEfficiency;
+    private DevelopmentPlan developmentPlan;
 
     private boolean hasLaptop;
 
@@ -18,6 +21,7 @@ public class Student implements KnowledgeSource {
         this.practicalKnowledge = practicalKnowledge;
         this.learningEfficiency = learningEfficiency;
         hasLaptop = true;
+        this.developmentPlan = new DevelopmentPlan();
     }
 
     public String getFullName() {
@@ -65,6 +69,18 @@ public class Student implements KnowledgeSource {
         this.hasLaptop = hasLaptop;
     }
 
+    public DevelopmentPlan getDevelopmentPlan() {
+        return developmentPlan;
+    }
+
+    public void addDevelopmentMeasure(DevelopmentMeasure developmentMeasure) {
+        this.developmentPlan.getMeasures().add(developmentMeasure);
+    }
+
+    public void mergeDevelopmentPlans(DevelopmentPlan developmentPlan) {
+        this.developmentPlan.getMeasures().addAll(developmentPlan.getMeasures());
+    }
+
     @Override
     public String toString() {
         return getFullName();
@@ -73,5 +89,10 @@ public class Student implements KnowledgeSource {
     @Override
     public void grantKnowledge(Student student) {
         student.addTheoreticalKnowledge(this.getTheoreticalKnowledge() * 0.01);
+        student.addPracticalKnowledge(this.getTheoreticalKnowledge() * 0.03);
+    }
+
+    public void onScheduleTaskEnd(DevelopmentMeasure measure){
+        measure.getKnowledgeSource().grantKnowledge(this);
     }
 }
