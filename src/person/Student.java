@@ -5,6 +5,8 @@ import person.consciousness.KnowledgeLevel;
 import person.development.DevelopmentMeasure;
 import person.development.DevelopmentPlan;
 
+import java.util.Date;
+
 public class Student implements KnowledgeSource {
 
     private String fullName;
@@ -42,11 +44,15 @@ public class Student implements KnowledgeSource {
     }
 
     public void addPracticalKnowledge(Double amount) {
+        double before = practicalKnowledge;
         this.practicalKnowledge += amount * learningEfficiency;
+        System.out.printf("%s: pr %3.2f -> %3.2f\n", fullName, before, practicalKnowledge);
     }
 
     public void addTheoreticalKnowledge(Double amount) {
+        double before = theoreticalKnowledge;
         this.theoreticalKnowledge += amount * learningEfficiency;
+        System.out.printf("%s: th %3.2f -> %3.2f\n", fullName, before, theoreticalKnowledge);
     }
 
     public Double getTheoreticalKnowledge() {
@@ -92,7 +98,7 @@ public class Student implements KnowledgeSource {
         student.addPracticalKnowledge(this.getTheoreticalKnowledge() * 0.03);
     }
 
-    public void onScheduleTaskEnd(DevelopmentMeasure measure){
-        measure.getKnowledgeSource().grantKnowledge(this);
+    public void workOnDevelopmentPlan(Date date) {
+        developmentPlan.workByPlan(this, date);
     }
 }

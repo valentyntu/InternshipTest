@@ -19,6 +19,7 @@ public class University implements KnowledgeSource {
 
     public void addStudent(Student student) {
         studentsList.add(student);
+        student.mergeDevelopmentPlans(developmentPlan);
     }
 
     public String getName() {
@@ -51,8 +52,8 @@ public class University implements KnowledgeSource {
     @Override
     public void grantKnowledge(Student student) {
         if (studentsList.contains(student)) {
-            student.addTheoreticalKnowledge(10.0);
-            student.addPracticalKnowledge(2.5);
+            student.addTheoreticalKnowledge(1.0);
+            student.addPracticalKnowledge(0.3);
         }
     }
 

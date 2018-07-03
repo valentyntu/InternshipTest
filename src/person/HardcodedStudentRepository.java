@@ -10,8 +10,14 @@ import static person.consciousness.KnowledgeLevel.UPPER_INTERMEDIATE;
 
 public class HardcodedStudentRepository implements StudentRepository {
 
+    private static List<Student> students = createStudents();
+
     @Override
     public List<Student> getStudents() {
+        return students;
+    }
+
+    private static List<Student> createStudents() {
         List<Student> students = new ArrayList<>();
         students.add(new Student(
                 "Mikolai Kostenko",

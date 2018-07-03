@@ -1,6 +1,9 @@
 package person.development;
 
 import institution.KnowledgeSource;
+import person.Student;
+
+import java.util.Date;
 
 public class DevelopmentMeasure {
 
@@ -10,6 +13,12 @@ public class DevelopmentMeasure {
     public DevelopmentMeasure(Schedule schedule, KnowledgeSource knowledgeSource) {
         this.schedule = schedule;
         this.knowledgeSource = knowledgeSource;
+    }
+
+    public void apply(Student student, Date date) {
+        if (schedule.isWorkingToday(date, student)) {
+            knowledgeSource.grantKnowledge(student);
+        }
     }
 
     public Schedule getSchedule() {

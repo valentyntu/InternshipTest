@@ -3,6 +3,7 @@ package institution.interlink;
 import institution.KnowledgeSource;
 import institution.University;
 import person.Student;
+import person.development.DevelopmentPlan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class Internship implements KnowledgeSource {
     private String name;
     private List<Student> studentsList;
     private University studentsOrigin;
+    private DevelopmentPlan developmentPlan;
 
     public Internship(String name) {
         this.name = name;
@@ -39,6 +41,16 @@ public class Internship implements KnowledgeSource {
     public void printStudents() {
         System.out.println("List of internship's students:");
         System.out.print(getStudents());
+        System.out.println();
+    }
+
+    public DevelopmentPlan getDevelopmentPlan() {
+        return developmentPlan;
+    }
+
+    public void setDevelopmentPlan(DevelopmentPlan developmentPlan) {
+        this.developmentPlan = developmentPlan;
+        studentsList.forEach(student -> student.mergeDevelopmentPlans(developmentPlan));
     }
 
     public String getName() {
