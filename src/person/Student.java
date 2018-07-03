@@ -6,9 +6,8 @@ import person.development.DevelopmentMeasure;
 import person.development.DevelopmentPlan;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Student implements KnowledgeSource {
+public class Student extends Creature implements KnowledgeSource {
 
     private String fullName;
     private Double theoreticalKnowledge;
