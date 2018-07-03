@@ -48,6 +48,13 @@ public class Institution implements KnowledgeSource {
 
     }
 
+    public void grantKnowledge(Student student, Double practicalKnowledge, Double theoreticalKnowledge){
+        if (studentsList.contains(student)) {
+            student.addPracticalKnowledge(practicalKnowledge);
+            student.addTheoreticalKnowledge(theoreticalKnowledge);
+        }
+    }
+
     public List<Student> getStudentsList() {
         return studentsList;
     }
@@ -84,12 +91,5 @@ public class Institution implements KnowledgeSource {
     public void addStudent(Student student) {
         getStudentsList().add(student);
         student.mergeDevelopmentPlans(getDevelopmentPlan());
-    }
-
-    public void grantKnowledge(Student student, Double practicalKnowledge, Double theoreticalKnowledge){
-        if (studentsList.contains(student)) {
-            student.addPracticalKnowledge(practicalKnowledge);
-            student.addTheoreticalKnowledge(theoreticalKnowledge);
-        }
     }
 }

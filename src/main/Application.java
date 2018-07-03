@@ -34,8 +34,8 @@ public class Application {
     private static Meetup createMeetup() {
         Meetup meetup = new Meetup("Brain on fire", true);
         Schedule meetupSchedule = new Schedule(
-                LocalDate.of(2018, 5, 11),
-                LocalDate.of(2018, 5, 13),
+                LocalDate.of(2018, 7, 2),
+                LocalDate.of(2018, 7, 4),
                 SimpleCondition.ONCE);
         meetup.addDevelopmentMeasureToPlan(new DevelopmentMeasure(meetupSchedule, meetup));
         meetup.addStudent(studentRepository.getStudents().get(0));
