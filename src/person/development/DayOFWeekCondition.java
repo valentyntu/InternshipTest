@@ -1,15 +1,14 @@
 package person.development;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 public enum DayOFWeekCondition implements ScheduleCondition {
-    MONDAY(2), TUESDAY(3), WEDNESDAY(4), THURSDAY(5), FRIDAY(6), SATURDAY(7), SUNDAY(1);
+    MONDAY(1), TUESDAY(2), WEDNESDAY(3), THURSDAY(4), FRIDAY(5), SATURDAY(6), SUNDAY(7);
 
-    private int order;
+    private int code;
 
-    DayOFWeekCondition(int order) {
-        this.order = order;
+    DayOFWeekCondition(int code) {
+        this.code = code;
     }
 
     @Override
@@ -28,9 +27,7 @@ public enum DayOFWeekCondition implements ScheduleCondition {
     }
 
     @Override
-    public boolean fitsDate(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return (order == calendar.get(Calendar.DAY_OF_WEEK));
+    public boolean fitsDate(LocalDate date) {
+        return date.getDayOfWeek().ordinal() == this.ordinal();
     }
 }

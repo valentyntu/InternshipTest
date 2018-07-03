@@ -5,6 +5,7 @@ import person.consciousness.KnowledgeLevel;
 import person.development.DevelopmentMeasure;
 import person.development.DevelopmentPlan;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Student implements KnowledgeSource {
@@ -98,7 +99,7 @@ public class Student implements KnowledgeSource {
         student.addPracticalKnowledge(this.getTheoreticalKnowledge() * 0.03);
     }
 
-    public void workOnDevelopmentPlan(Date date) {
+    public void workOnDevelopmentPlan(LocalDate date) {
         developmentPlan.workByPlan(this, date);
     }
 }

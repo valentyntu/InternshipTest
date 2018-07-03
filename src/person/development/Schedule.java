@@ -2,38 +2,22 @@ package person.development;
 
 import person.Student;
 
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Schedule {
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
     private ScheduleCondition scheduleCondition;
-    private Map<Student, Date> datesOfLastFinishing;
+    private Map<Student, LocalDate> datesOfLastFinishing;
 
-    public Schedule(Date dateStart, Date dateEnd, ScheduleCondition scheduleCondition) {
+    public Schedule(LocalDate dateStart, LocalDate dateEnd, ScheduleCondition scheduleCondition) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.scheduleCondition = scheduleCondition;
         datesOfLastFinishing = new HashMap<>();
-    }
-
-    public Date getDateStart() {
-        return dateStart;
-    }
-
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
     }
 
     public ScheduleCondition getScheduleCondition() {
@@ -44,8 +28,8 @@ public class Schedule {
         this.scheduleCondition = scheduleCondition;
     }
 
-    public boolean isWorkingToday(Date today, Student student) {
-        if (today.after(dateEnd) || today.before(dateStart)) {
+    public boolean isWorkingToday(LocalDate today, Student student) {
+        if (today.isAfter(dateEnd) || today.isBefore(dateStart)) {
             return false;
         } else {
             if (scheduleCondition.contains(SimpleCondition.WEEKLY)) {
@@ -75,27 +59,20 @@ public class Schedule {
         }
     }
 
-    private boolean startedNewWeek(Date from, Date now) {
+    private boolean startedNewWeek(LocalDate from, LocalDate now) {
         if (from == null) {
             return true;
         }
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(from);
-        int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-        calendar.setTime(now);
-        int currentWeekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);
-        return currentWeekOfYear > weekOfYear;
+        int daysInYear = from.isLeapYear() ? 366 : 365;
+        int weekOfYear = daysInYear / from.getDayOfYear();
+        int currentWeekOfYear = daysInYear / now.getDayOfYear();
+        return currentWeekOfYear > weekOfYear || now.getYear() > from.getYear();
     }
 
-    private boolean startedNewMonth(Date from, Date now) {
+    private boolean startedNewMonth(LocalDate from, LocalDate now) {
         if (from == null) {
             return true;
         }
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(from);
-        int month = calendar.get(Calendar.MONTH);
-        calendar.setTime(now);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        return currentMonth > month;
+        return now.getMonth().ordinal() > from.getMonth().ordinal() || now.getYear() > from.getYear();
     }
 }

@@ -1,5 +1,6 @@
 package person.development;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public interface ScheduleCondition {
@@ -10,5 +11,5 @@ public interface ScheduleCondition {
 
     boolean contains(ScheduleCondition condition);
 
-    boolean fitsDate(Date date);
+    boolean fitsDate(LocalDate date);
 }

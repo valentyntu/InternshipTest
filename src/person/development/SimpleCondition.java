@@ -1,7 +1,7 @@
 package person.development;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 public enum SimpleCondition implements ScheduleCondition {
     ONCE, DAILY, WEEKLY, MONTHLY, ON_WORKING_DAY, ON_WEEKEND;
@@ -22,7 +22,7 @@ public enum SimpleCondition implements ScheduleCondition {
     }
 
     @Override
-    public boolean fitsDate(Date date) {
+    public boolean fitsDate(LocalDate date) {
         switch (this) {
             case ONCE: {
                 return true;
@@ -47,14 +47,11 @@ public enum SimpleCondition implements ScheduleCondition {
         }
     }
 
-    public static boolean isAWeekend(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return (dayOfWeek == Calendar.SUNDAY) || (dayOfWeek == Calendar.SATURDAY);
+    public static boolean isAWeekend(LocalDate date) {
+        return (date.getDayOfWeek() == DayOfWeek.SUNDAY) || (date.getDayOfWeek() == DayOfWeek.SATURDAY);
     }
 
-    public static boolean isAWorkingDay(Date date) {
+    public static boolean isAWorkingDay(LocalDate date) {
         return !isAWeekend(date);
     }
 

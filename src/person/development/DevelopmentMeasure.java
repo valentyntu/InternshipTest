@@ -3,6 +3,7 @@ package person.development;
 import institution.KnowledgeSource;
 import person.Student;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DevelopmentMeasure {
@@ -15,7 +16,7 @@ public class DevelopmentMeasure {
         this.knowledgeSource = knowledgeSource;
     }
 
-    public void apply(Student student, Date date) {
+    public void apply(Student student, LocalDate date) {
         if (schedule.isWorkingToday(date, student)) {
             knowledgeSource.grantKnowledge(student);
         }

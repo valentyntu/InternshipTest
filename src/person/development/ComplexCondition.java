@@ -1,5 +1,6 @@
 package person.development;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class ComplexCondition implements ScheduleCondition {
     }
 
     @Override
-    public boolean fitsDate(Date date) {
+    public boolean fitsDate(LocalDate date) {
         return conditions.stream().allMatch(condition -> condition.fitsDate(date));
     }
 }
