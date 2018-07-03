@@ -17,14 +17,12 @@ public class Internship extends Institution {
     public void addStudent(Student student) {
         if (student.getKnowledgeLevel().ordinal() > studentsOrigin.getAverageLevel().ordinal()) {
             getStudentsList().add(student);
+            student.mergeDevelopmentPlans(getDevelopmentPlan());
         }
     }
 
     @Override
     public void grantKnowledge(Student student) {
-        if (getStudentsList().contains(student)) {
-            student.addTheoreticalKnowledge(20.0);
-            student.addPracticalKnowledge(30.0);
-        }
+        grantKnowledge(student, 2.0, 1.0);
     }
 }

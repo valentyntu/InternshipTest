@@ -1,13 +1,14 @@
 package institution.interlink;
 
-import institution.KnowledgeSource;
+import institution.Institution;
 import person.Student;
 
-public class Meetup implements KnowledgeSource {
+public class Meetup extends Institution {
 
     private boolean hasInteractive;
 
-    public Meetup(boolean hasInteractive) {
+    public Meetup(String name, boolean hasInteractive) {
+        super(name);
         this.hasInteractive = hasInteractive;
     }
 

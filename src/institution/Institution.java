@@ -80,4 +80,16 @@ public class Institution implements KnowledgeSource {
         }
         return averageLevel;
     }
+
+    public void addStudent(Student student) {
+        getStudentsList().add(student);
+        student.mergeDevelopmentPlans(getDevelopmentPlan());
+    }
+
+    public void grantKnowledge(Student student, Double practicalKnowledge, Double theoreticalKnowledge){
+        if (studentsList.contains(student)) {
+            student.addPracticalKnowledge(practicalKnowledge);
+            student.addTheoreticalKnowledge(theoreticalKnowledge);
+        }
+    }
 }

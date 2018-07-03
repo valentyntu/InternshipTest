@@ -20,22 +20,22 @@ public class HardcodedStudentRepository implements StudentRepository {
     private static List<Student> createStudents() {
         List<Student> students = new ArrayList<>();
         students.add(new Student(
-                "Mikolai K.",
+                "Mykolai K.",
                 BEGINNER.getKnowledgeThreshold(),
                 BEGINNER.getKnowledgeThreshold(),
-                0.1));
+                0.4));
         students.add(new Student("Kostyantin Sch.",
                 BEGINNER.getKnowledgeThreshold(),
                 BEGINNER.getKnowledgeThreshold(),
-                0.19));
+                0.42));
         students.add(new Student("Max D.",
                 INTERMEDIATE.getKnowledgeThreshold(),
                 INTERMEDIATE.getKnowledgeThreshold(),
-                0.25));
+                0.5));
         students.add(new Student("Anton Ch.",
                 UPPER_INTERMEDIATE.getKnowledgeThreshold(),
                 UPPER_INTERMEDIATE.getKnowledgeThreshold(),
-                0.6));
+                0.75));
         students.add(new Student("Alex T.",
                 ADVANCED.getKnowledgeThreshold(),
                 ADVANCED.getKnowledgeThreshold(),

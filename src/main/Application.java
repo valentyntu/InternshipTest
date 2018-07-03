@@ -2,6 +2,7 @@ package main;
 
 import institution.University;
 import institution.interlink.Internship;
+import institution.interlink.Meetup;
 import person.HardcodedStudentRepository;
 import person.Student;
 import person.StudentRepository;
@@ -25,7 +26,21 @@ public class Application {
         Internship internship = createInternship(university);
         internship.printStudents();
 
+        Meetup meetup = createMeetup();
+
         makeStudentsWork();
+    }
+
+    private static Meetup createMeetup() {
+        Meetup meetup = new Meetup("Brain on fire", true);
+        Schedule meetupSchedule = new Schedule(
+                LocalDate.of(2018, 5, 11),
+                LocalDate.of(2018, 5, 13),
+                SimpleCondition.ONCE);
+        meetup.addDevelopmentMeasureToPlan(new DevelopmentMeasure(meetupSchedule, meetup));
+        meetup.addStudent(studentRepository.getStudents().get(0));
+        meetup.addStudent(studentRepository.getStudents().get(3));
+        return meetup;
     }
 
     private static void makeStudentsWork() {
