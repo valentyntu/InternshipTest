@@ -2,9 +2,10 @@ package person.development;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 
 public enum SimpleCondition implements ScheduleCondition {
-    ONCE, DAILY, WEEKLY, MONTHLY, ON_WORKING_DAY, ON_WEEKEND;
+    ONCE, DAILY, WEEKLY, MONTHLY, ON_WORKING_DAY, ON_WEEKEND, NOT_IN_SUMMER;
 
     @Override
     public void add(ScheduleCondition condition) {
@@ -42,9 +43,16 @@ public enum SimpleCondition implements ScheduleCondition {
             case ON_WEEKEND: {
                 return isAWeekend(date);
             }
+            case NOT_IN_SUMMER: {
+                return !isSummer(date);
+            }
             default:
                 return false;
         }
+    }
+
+    private boolean isSummer(LocalDate date) {
+        return date.getMonth() == Month.JUNE || date.getMonth() == Month.JULY || date.getMonth() == Month.AUGUST;
     }
 
     public static boolean isAWeekend(LocalDate date) {

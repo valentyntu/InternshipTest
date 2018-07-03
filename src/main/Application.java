@@ -3,7 +3,6 @@ package main;
 import institution.University;
 import institution.interlink.Internship;
 import person.HardcodedStudentRepository;
-import person.SelfDevelopment;
 import person.Student;
 import person.StudentRepository;
 import person.development.ComplexCondition;
@@ -13,12 +12,7 @@ import person.development.DevelopmentPlan;
 import person.development.Schedule;
 import person.development.SimpleCondition;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 public class Application {
@@ -31,10 +25,10 @@ public class Application {
         Internship internship = createInternship(university);
         internship.printStudents();
 
-        makeStudentWork();
+        makeStudentsWork();
     }
 
-    private static void makeStudentWork() {
+    private static void makeStudentsWork() {
         List<Student> studentRegistry = studentRepository.getStudents();
         LocalDate workingDate = LocalDate.of(2018, 7, 3);
         for (int i = 0; i < 2; i++) {
@@ -48,7 +42,10 @@ public class Application {
         university.setStudentsList(studentRepository.getStudents());
         LocalDate universityDateStart = LocalDate.of(2018, 1, 1);
         LocalDate universityDateEnd = LocalDate.of(2021, 6, 30);
-        Schedule studyingSchedule = new Schedule(universityDateStart, universityDateEnd, SimpleCondition.ON_WORKING_DAY);
+        ComplexCondition condition = new ComplexCondition();
+        condition.add(SimpleCondition.ON_WORKING_DAY);
+        condition.add(SimpleCondition.NOT_IN_SUMMER);
+        Schedule studyingSchedule = new Schedule(universityDateStart, universityDateEnd, condition);
         DevelopmentMeasure studying = new DevelopmentMeasure(studyingSchedule, university);
         university.addDevelopmentMeasureToPlan(studying);
         return university;
