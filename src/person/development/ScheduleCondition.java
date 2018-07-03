@@ -1,7 +1,6 @@
 package person.development;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public interface ScheduleCondition {
 

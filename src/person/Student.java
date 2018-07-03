@@ -47,13 +47,15 @@ public class Student implements KnowledgeSource {
     public void addPracticalKnowledge(Double amount) {
         double before = practicalKnowledge;
         this.practicalKnowledge += amount * learningEfficiency;
-        System.out.printf("%s: pr %3.2f -> %3.2f\n", fullName, before, practicalKnowledge);
+        System.out.printf("%20s: pr %6.2f -> %6.2f %s\n",
+                fullName, before, practicalKnowledge, getKnowledgeLevel());
     }
 
     public void addTheoreticalKnowledge(Double amount) {
         double before = theoreticalKnowledge;
         this.theoreticalKnowledge += amount * learningEfficiency;
-        System.out.printf("%s: th %3.2f -> %3.2f\n", fullName, before, theoreticalKnowledge);
+        System.out.printf("%20s: th %6.2f -> %6.2f %s\n",
+                fullName, before, theoreticalKnowledge, getKnowledgeLevel());
     }
 
     public Double getTheoreticalKnowledge() {

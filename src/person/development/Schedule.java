@@ -3,7 +3,6 @@ package person.development;
 import person.Student;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,10 +62,8 @@ public class Schedule {
         if (from == null) {
             return true;
         }
-        int daysInYear = from.isLeapYear() ? 366 : 365;
-        int weekOfYear = daysInYear / from.getDayOfYear();
-        int currentWeekOfYear = daysInYear / now.getDayOfYear();
-        return currentWeekOfYear > weekOfYear || now.getYear() > from.getYear();
+        int DAYS_IN_WEEK = 7;
+        return now.getDayOfYear() - from.getDayOfYear() >= DAYS_IN_WEEK || now.getYear() > from.getYear();
     }
 
     private boolean startedNewMonth(LocalDate from, LocalDate now) {
