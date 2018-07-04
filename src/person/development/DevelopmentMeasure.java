@@ -18,7 +18,7 @@ public class DevelopmentMeasure {
 
     public void apply(Student student, LocalDate date) {
         if (schedule.isApplicableOn(date, student)) {
-            System.out.printf("[%s", knowledgeSource.getClass().getSimpleName());
+            System.out.printf("%s [%s",student.getFullName(), knowledgeSource.getClass().getSimpleName());
             if (knowledgeSource instanceof Institution) {
                 Institution institution = (Institution) knowledgeSource;
                 System.out.printf(": %s", institution.getName());

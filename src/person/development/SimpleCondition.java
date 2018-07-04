@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.Month;
 
 public enum SimpleCondition implements ScheduleCondition {
-    ONCE, DAILY, WEEKLY, MONTHLY, ON_WORKING_DAY, ON_WEEKEND, NOT_IN_SUMMER;
+    ONCE, DAILY, WEEKLY, MONTHLY, ON_WORKING_DAY, ON_WEEKEND, NOT_IN_SUMMER, CUSTOM_DAYS;
 
     @Override
     public void add(ScheduleCondition condition) {
@@ -32,10 +32,10 @@ public enum SimpleCondition implements ScheduleCondition {
                 return true;
             }
             case WEEKLY: {
-                return true;
+                return false;
             }
             case MONTHLY: {
-                return true;
+                return false;
             }
             case ON_WORKING_DAY: {
                 return isAWorkingDay(date);
@@ -45,6 +45,9 @@ public enum SimpleCondition implements ScheduleCondition {
             }
             case NOT_IN_SUMMER: {
                 return !isSummer(date);
+            }
+            case CUSTOM_DAYS:{
+                return false;
             }
             default:
                 return false;

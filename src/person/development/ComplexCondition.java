@@ -32,6 +32,13 @@ public class ComplexCondition implements ScheduleCondition {
 
     @Override
     public boolean fitsDate(LocalDate date) {
+        if (conditions.contains(SimpleCondition.CUSTOM_DAYS)){
+            return conditions.stream().anyMatch(condition -> condition.fitsDate(date));
+        }
         return conditions.stream().allMatch(condition -> condition.fitsDate(date));
+    }
+
+    public Set<ScheduleCondition> getConditions() {
+        return conditions;
     }
 }

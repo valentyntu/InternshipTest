@@ -115,4 +115,9 @@ public class Institution implements KnowledgeSource {
         getStudentsList().add(student);
         student.mergeDevelopmentPlans(getDevelopmentPlan());
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

@@ -50,7 +50,6 @@ public class Schedule {
                         return false;
                     }
                 }
-
                 return registerMeasureAttendance(today, student);
 
             } else {

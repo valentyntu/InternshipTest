@@ -46,15 +46,15 @@ public class Student extends Creature implements KnowledgeSource {
     public void addPracticalKnowledge(Double amount) {
         double before = practicalKnowledge;
         this.practicalKnowledge += amount * learningEfficiency;
-        System.out.printf("%20s: pr %6.2f -> %6.2f %s\n",
-                fullName, before, practicalKnowledge, getKnowledgeLevel());
+        System.out.printf("\tpr %6.2f -> %6.2f %s\n",
+                before, practicalKnowledge, getKnowledgeLevel());
     }
 
     public void addTheoreticalKnowledge(Double amount) {
         double before = theoreticalKnowledge;
         this.theoreticalKnowledge += amount * learningEfficiency;
-        System.out.printf("%20s: th %6.2f -> %6.2f %s\n",
-                fullName, before, theoreticalKnowledge, getKnowledgeLevel());
+        System.out.printf("\tth %6.2f -> %6.2f %s\n",
+                before, theoreticalKnowledge, getKnowledgeLevel());
     }
 
     public Double getTheoreticalKnowledge() {

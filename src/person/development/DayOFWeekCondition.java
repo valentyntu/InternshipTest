@@ -17,7 +17,7 @@ public enum DayOFWeekCondition implements ScheduleCondition {
 
     @Override
     public boolean contains(ScheduleCondition condition) {
-        return this.equals(condition);
+        return this instanceof DayOFWeekCondition && this.equals(condition);
     }
 
     @Override

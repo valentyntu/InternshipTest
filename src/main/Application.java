@@ -50,9 +50,10 @@ public class Application {
 
     private static void makeStudentsWork() {
         LocalDate workingDate = LocalDate.of(2018, 7, 3);
-        int daysToIterate = 2;
+        int daysToIterate = 6;
+        System.out.println("Students started working on their plans:");
         for (int i = 0; i < daysToIterate; i++) {
-            System.out.printf("Today is %s\n", workingDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+            System.out.printf("\n\nToday is %s\n\n", workingDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
             for (Student student : studentRepository.getStudents()) {
                 student.workOnDevelopmentPlan(workingDate);
             }
@@ -82,8 +83,11 @@ public class Application {
         LocalDate internshipDateStart = LocalDate.of(2018, 7, 2);
         LocalDate internshipDateEnd = LocalDate.of(2018, 9, 30);
         ComplexCondition internshipCondition = new ComplexCondition();
-        internshipCondition.add(SimpleCondition.WEEKLY);
+        internshipCondition.add(SimpleCondition.CUSTOM_DAYS);
+        internshipCondition.add(DayOFWeekCondition.MONDAY);
         internshipCondition.add(DayOFWeekCondition.TUESDAY);
+        internshipCondition.add(DayOFWeekCondition.WEDNESDAY);
+        internshipCondition.add(DayOFWeekCondition.FRIDAY);
         Schedule internshipStudyingSchedule = new Schedule(internshipDateStart, internshipDateEnd, internshipCondition);
         DevelopmentMeasure internshipStudying = new DevelopmentMeasure(internshipStudyingSchedule, internship);
         internshipPlan.addMeasure(internshipStudying);
