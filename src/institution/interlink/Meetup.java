@@ -10,6 +10,8 @@ public class Meetup extends Institution {
     public Meetup(String name, boolean hasInteractive) {
         super(name);
         this.hasInteractive = hasInteractive;
+        setPracticalKnowledgePerDay(1.0);
+        setTheoreticalKnowledgePerDay(1.0);
     }
 
     public boolean hasInteractive() {
@@ -22,9 +24,11 @@ public class Meetup extends Institution {
 
     @Override
     public void grantKnowledge(Student student) {
-        student.addTheoreticalKnowledge(hasInteractive ? 15.0 : 10.0);
+        student.addTheoreticalKnowledge(hasInteractive
+                ? getTheoreticalKnowledgePerDay() * 1.5
+                : getPracticalKnowledgePerDay());
         if (student.hasLaptop()) {
-            student.addPracticalKnowledge(5.0);
+            student.addPracticalKnowledge(getTheoreticalKnowledgePerDay());
         }
     }
 }

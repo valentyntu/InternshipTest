@@ -1,17 +1,16 @@
 package institution.interlink;
 
 import institution.Institution;
-import institution.University;
 import person.Student;
 
 public class Internship extends Institution {
 
-    private University studentsOrigin;
+    private Institution studentsOrigin;
 
-    public Internship(String name, University university) {
+    public Internship(String name) {
         super(name);
-        this.studentsOrigin = university;
-        university.getStudentsList().forEach(this::addStudent);
+        setPracticalKnowledgePerDay(2.0);
+        setTheoreticalKnowledgePerDay(1.0);
     }
 
     public void addStudent(Student student) {
@@ -21,8 +20,8 @@ public class Internship extends Institution {
         }
     }
 
-    @Override
-    public void grantKnowledge(Student student) {
-        grantKnowledge(student, 2.0, 1.0);
+    public void addStudentsFrom(Institution institution) {
+        this.studentsOrigin = institution;
+        institution.getStudentsList().forEach(this::addStudent);
     }
 }

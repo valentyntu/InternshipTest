@@ -27,7 +27,7 @@ public class Schedule {
         this.scheduleCondition = scheduleCondition;
     }
 
-    public boolean isWorkingToday(LocalDate today, Student student) {
+    public boolean isApplicableOn(LocalDate today, Student student) {
         if (!isInPeriod(today) || wasAttendedBy(student, today)) {
             return false;
         } else {

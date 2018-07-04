@@ -70,7 +70,8 @@ public class Application {
     }
 
     private static Internship createInternship(University university) {
-        Internship internship = new Internship("Interlink", university);
+        Internship internship = new Internship("Interlink");
+        internship.addStudentsFrom(university);
         DevelopmentPlan internshipPlan = new DevelopmentPlan();
         LocalDate internshipDateStart = LocalDate.of(2018, 7, 2);
         LocalDate internshipDateEnd = LocalDate.of(2018, 9, 30);

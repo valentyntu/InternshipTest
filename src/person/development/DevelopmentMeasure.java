@@ -16,7 +16,8 @@ public class DevelopmentMeasure {
     }
 
     public void apply(Student student, LocalDate date) {
-        if (schedule.isWorkingToday(date, student)) {
+        if (schedule.isApplicableOn(date, student)) {
+            System.out.printf("[%s]\n", knowledgeSource.getClass().getSimpleName());
             knowledgeSource.grantKnowledge(student);
         }
     }

@@ -13,6 +13,9 @@ public class Institution implements KnowledgeSource {
     private List<Student> studentsList;
     private DevelopmentPlan developmentPlan;
 
+    private Double practicalKnowledgePerDay;
+    private Double theoreticalKnowledgePerDay;
+
     public Institution(String name) {
         this.name = name;
         studentsList = new ArrayList<>();
@@ -25,6 +28,22 @@ public class Institution implements KnowledgeSource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getPracticalKnowledgePerDay() {
+        return practicalKnowledgePerDay;
+    }
+
+    public void setPracticalKnowledgePerDay(Double practicalKnowledgePerDay) {
+        this.practicalKnowledgePerDay = practicalKnowledgePerDay;
+    }
+
+    public Double getTheoreticalKnowledgePerDay() {
+        return theoreticalKnowledgePerDay;
+    }
+
+    public void setTheoreticalKnowledgePerDay(Double theoreticalKnowledgePerDay) {
+        this.theoreticalKnowledgePerDay = theoreticalKnowledgePerDay;
     }
 
     public String getStudents() {
@@ -45,7 +64,11 @@ public class Institution implements KnowledgeSource {
 
     @Override
     public void grantKnowledge(Student student) {
-
+        grantKnowledge(
+                student,
+                getPracticalKnowledgePerDay(),
+                getTheoreticalKnowledgePerDay()
+        );
     }
 
     public void grantKnowledge(Student student, Double practicalKnowledge, Double theoreticalKnowledge){
