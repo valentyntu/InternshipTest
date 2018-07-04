@@ -4,6 +4,7 @@ import institution.University;
 import institution.interlink.Internship;
 import institution.interlink.Meetup;
 import person.HardcodedStudentRepository;
+import person.SelfDevelopment;
 import person.Student;
 import person.StudentRepository;
 import person.development.ComplexCondition;
@@ -14,6 +15,8 @@ import person.development.Schedule;
 import person.development.SimpleCondition;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 public class Application {
@@ -27,6 +30,8 @@ public class Application {
         internship.printStudents();
 
         Meetup meetup = createMeetup();
+
+        addSelfDevelopment(studentRepository.getStudents().get(1));
 
         makeStudentsWork();
     }
@@ -47,11 +52,12 @@ public class Application {
         LocalDate workingDate = LocalDate.of(2018, 7, 3);
         int daysToIterate = 2;
         for (int i = 0; i < daysToIterate; i++) {
+            System.out.printf("Today is %s\n", workingDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
             for (Student student : studentRepository.getStudents()) {
                 student.workOnDevelopmentPlan(workingDate);
             }
             workingDate = workingDate.plusDays(1);
-            System.out.println();
+
         }
     }
 
@@ -83,5 +89,15 @@ public class Application {
         internshipPlan.addMeasure(internshipStudying);
         internship.setDevelopmentPlan(internshipPlan);
         return internship;
+    }
+
+    private static SelfDevelopment addSelfDevelopment(Student targetStudent) {
+        SelfDevelopment selfDevelopment = new SelfDevelopment();
+        LocalDate dateStart = LocalDate.of(2010, 1, 1);
+        LocalDate dateEnd = LocalDate.of(2020, 12, 31);
+        Schedule schedule = new Schedule(dateStart, dateEnd, SimpleCondition.DAILY);
+        DevelopmentMeasure selfDevelopmentMeasure = new DevelopmentMeasure(schedule, selfDevelopment);
+        targetStudent.addDevelopmentMeasure(selfDevelopmentMeasure);
+        return selfDevelopment;
     }
 }

@@ -1,5 +1,6 @@
 package person.development;
 
+import institution.Institution;
 import institution.KnowledgeSource;
 import person.Student;
 
@@ -17,7 +18,12 @@ public class DevelopmentMeasure {
 
     public void apply(Student student, LocalDate date) {
         if (schedule.isApplicableOn(date, student)) {
-            System.out.printf("[%s]\n", knowledgeSource.getClass().getSimpleName());
+            System.out.printf("[%s", knowledgeSource.getClass().getSimpleName());
+            if (knowledgeSource instanceof Institution) {
+                Institution institution = (Institution) knowledgeSource;
+                System.out.printf(": %s", institution.getName());
+            }
+            System.out.print("]\n");
             knowledgeSource.grantKnowledge(student);
         }
     }
