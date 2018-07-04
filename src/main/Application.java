@@ -44,10 +44,13 @@ public class Application {
     }
 
     private static void makeStudentsWork() {
-        List<Student> studentRegistry = studentRepository.getStudents();
         LocalDate workingDate = LocalDate.of(2018, 7, 3);
-        for (int i = 0; i < 2; i++) {
-            studentRegistry.forEach(student -> student.workOnDevelopmentPlan(workingDate));
+        int daysToIterate = 2;
+        for (int i = 0; i < daysToIterate; i++) {
+            for (Student student : studentRepository.getStudents()) {
+                student.workOnDevelopmentPlan(workingDate);
+            }
+            workingDate = workingDate.plusDays(1);
             System.out.println();
         }
     }

@@ -28,34 +28,48 @@ public class Schedule {
     }
 
     public boolean isWorkingToday(LocalDate today, Student student) {
-        if (today.isAfter(dateEnd) || today.isBefore(dateStart)) {
+        if (!isInPeriod(today) || wasAttendedBy(student, today)) {
             return false;
         } else {
-            if (scheduleCondition.contains(SimpleCondition.WEEKLY)) {
-                if (startedNewWeek(datesOfLastFinishing.get(student), today) && scheduleCondition.fitsDate(today)) {
-                    datesOfLastFinishing.put(student, today);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
-            if (scheduleCondition.contains(SimpleCondition.MONTHLY)) {
-                if (startedNewMonth(datesOfLastFinishing.get(student), today) && scheduleCondition.fitsDate(today)) {
-                    datesOfLastFinishing.put(student, today);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
             if (scheduleCondition.fitsDate(today)) {
-                datesOfLastFinishing.put(student, today);
-                return true;
+
+                if (scheduleCondition.contains(SimpleCondition.WEEKLY)
+                        && startedNewWeek(datesOfLastFinishing.get(student), today)) {
+                    return registerMeasureAttendance(today, student);
+                }
+
+                if (scheduleCondition.contains(SimpleCondition.MONTHLY)
+                        && startedNewMonth(datesOfLastFinishing.get(student), today)) {
+                    return registerMeasureAttendance(today, student);
+                }
+
+                if (scheduleCondition.contains(SimpleCondition.ONCE)) {
+                    if (datesOfLastFinishing.get(student) == null) {
+                        return registerMeasureAttendance(today, student);
+                    } else {
+                        return false;
+                    }
+                }
+
+                return registerMeasureAttendance(today, student);
+
             } else {
                 return false;
             }
         }
+    }
+
+    private boolean registerMeasureAttendance(LocalDate today, Student student) {
+        datesOfLastFinishing.put(student, today);
+        return true;
+    }
+
+    private boolean wasAttendedBy(Student student, LocalDate today) {
+        return datesOfLastFinishing.get(student) != null && datesOfLastFinishing.get(student).isEqual(today);
+    }
+
+    private boolean isInPeriod(LocalDate today) {
+        return today.isBefore(dateEnd) || today.isAfter(dateStart);
     }
 
     private boolean startedNewWeek(LocalDate from, LocalDate now) {
