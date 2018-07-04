@@ -4,7 +4,7 @@ import institution.University;
 import institution.interlink.Internship;
 import institution.interlink.Meetup;
 import person.HardcodedStudentRepository;
-import person.SelfDevelopment;
+import person.development.SelfDevelopment;
 import person.Student;
 import person.StudentRepository;
 import person.development.ComplexCondition;
@@ -17,7 +17,6 @@ import person.development.SimpleCondition;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.List;
 
 public class Application {
 
