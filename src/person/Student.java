@@ -100,6 +100,12 @@ public class Student extends Creature implements KnowledgeSource {
         student.addPracticalKnowledge(this.getTheoreticalKnowledge() * 0.03);
     }
 
+    public void increaseLearningEfficiency(double increment) {
+        if (learningEfficiency < 1 && learningEfficiency + increment < 1) {
+            learningEfficiency += increment;
+        }
+    }
+
     public void workOnDevelopmentPlan(LocalDate date) {
         developmentPlan.workByPlan(this, date);
     }

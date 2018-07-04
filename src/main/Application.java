@@ -53,10 +53,11 @@ public class Application {
         int daysToIterate = 6;
         System.out.println("Students started working on their plans:");
         for (int i = 0; i < daysToIterate; i++) {
-            System.out.printf("\n\nToday is %s\n\n", workingDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
+            System.out.printf("\nToday is %s\n\n", workingDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL)));
             for (Student student : studentRepository.getStudents()) {
                 student.workOnDevelopmentPlan(workingDate);
             }
+            System.out.println();
             workingDate = workingDate.plusDays(1);
 
         }
